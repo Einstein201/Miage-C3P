@@ -1,6 +1,6 @@
 Dans ce chapitre nous avons étudié le design pattern Visitor. Son fonctionnement principal est de représenter une opération comme un objet séparé de la structure de données sur laquelle elle s’applique.
 
-#Ce que je retiens :
+# Ce que je retiens :
 
 - Un Visitor représente une opération (ex. : exporter un document).
 - Les objets du domaine n’implémentent plus l’opération directement, ils exposent simplement acceptVisitor: et délèguent au visitor.
@@ -9,9 +9,9 @@ Dans ce chapitre nous avons étudié le design pattern Visitor. Son fonctionneme
 la structure des objets est stable,
 on veut rajouter souvent de nouvelles opérations
 
-#Application à mon exemple : comptes multi-devises
+# Application à mon exemple : comptes multi-devises
 
-##Besoin métier
+## Besoin métier
 
 Je pars du scénario suivant :
 J’ai plusieurs comptes en banque dans différentes devises (dollar, gourdes, pesos). Je veux prendre tout l’argent de ces comptes et le déposer sur un compte en euros.
@@ -19,7 +19,7 @@ L’opération que je veux modéliser est donc :
 Visiter tous les comptes, convertir leur solde en euros, et transférer ce montant vers un compte en euros. 
 Plutôt que de mettre tout le code de conversion dans les classes de comptes, je vais créer un visitor qui s’occupe de cette opération.
 
-###Modèle d’objets (domaine)
+### Modèle d’objets (domaine)
 
 Je définis une hiérarchie simple :
 BankElement : super-classe commune
@@ -43,19 +43,19 @@ créditer le compte en euros et mettre le compte d’origine à zéro,
 éventuellement garder un totalInEuro.
 Le point important : la logique de conversion est centralisée dans le visitor, pas dans chaque compte.
 
-##Difficultés rencontrées
+## Difficultés rencontrées
 Je me suis demandé si les taux de change devaient être stockés dans les comptes ou dans le visitor. Finalement j’ai choisi de les mettre dans le visitor, car ils appartiennent à cette opération.
 
 ``` BankAccount >> acceptVisitor: aVisitor
     self subclassResponsibility ```
 
-```AccountVisitor >> visitDollarAccount: aDollarAccount
+``` AccountVisitor >> visitDollarAccount: aDollarAccount
     self subclassResponsibility.
 
 AccountVisitor >> visitGourdeAccount: aGourdeAccount
     self subclassResponsibility.
 
 AccountVisitor >> visitEuroAccount: anEuroAccount
-    self subclassResponsibility.```
+    self subclassResponsibility. ```
 
 
