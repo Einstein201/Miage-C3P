@@ -6,8 +6,8 @@ Dans ce chapitre nous avons étudié le design pattern Visitor. Son fonctionneme
 - Les objets du domaine n’implémentent plus l’opération directement, ils exposent simplement acceptVisitor: et délèguent au visitor.
 - Grâce au double dispatch, on évite les if sur le type des objets.
 - Le pattern est particulièrement adapté quand :
-la structure des objets est stable,
-on veut rajouter souvent de nouvelles opérations
+   - la structure des objets est stable,
+   - on veut rajouter souvent de nouvelles opérations
 
 # Application à mon exemple : comptes multi-devises
 
